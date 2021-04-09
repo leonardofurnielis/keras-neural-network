@@ -1,0 +1,6 @@
+# Dataset 
+app/imdb-dataset.csv
+
+# Model files
+app/vectorizer.pkl
+app/network_model.h5
