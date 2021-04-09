@@ -1,4 +1,4 @@
-# neural-network-openshift
+# python-neural-network
 
 ## Table of Contents
 
@@ -18,6 +18,6 @@ $ pip install --no-cache-dir -r requirements.txt
 To run this code using Docker container execute the following commands into project root directory
 
 ```bash
-$ docker build -t neural-network-openshift .
-$ docker run -p 80:80 -d neural-network-openshift
+$ docker build -t python-neural-network .
+$ docker run -p 80:80 -d python-neural-network
 ```
