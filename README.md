@@ -1,4 +1,4 @@
-# python-neural-network
+# keras-neural-network
 
 ## Table of Contents
 
@@ -18,6 +18,6 @@ $ pip install --no-cache-dir -r requirements.txt
 To run this code using Docker container execute the following commands into project root directory
 
 ```bash
-$ docker build -t python-neural-network .
-$ docker run -p 80:80 -d python-neural-network
+$ docker build -t keras-neural-network .
+$ docker run -p 80:80 -d keras-neural-network
 ```
