@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y nginx supervisor
 RUN rm /etc/nginx/sites-enabled/default
 COPY nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.conf
+RUN chown -R appuser:root /run/nginx.pid /cache/nginx
 
 # Supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
