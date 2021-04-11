@@ -1,7 +1,7 @@
 from tensorflow import keras
 import numpy as np
 
-model = keras.models.load_model('app/network_model.h5')
+model = keras.models.load_model('src/network_model.h5')
 
 def model_predict(X):
     predicted = model.predict(X)

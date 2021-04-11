@@ -6,8 +6,8 @@ import os
 import json
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from app.preprocessing import pre_processing
-from app.prediction import model_predict
+from src.preprocessing import pre_processing
+from src.prediction import model_predict
 
 app = Flask(__name__)
 api = Api(app)
