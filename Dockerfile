@@ -26,4 +26,6 @@ RUN chmod -R 777 /usr/src/home
 
 USER appuser
 
+RUN ls -la
+
 CMD ["sudo /usr/bin/supervisord", "--loglevel=debug"]
