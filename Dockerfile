@@ -1,7 +1,7 @@
 FROM python:3.8.9-slim-buster
 
 # Flask demo application
-WORKDIR /usr/src/home
+WORKDIR /home/vcap/app
 
 COPY requirements.txt ./
 
@@ -23,14 +23,14 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Creates a non-root user and adds permission to access folders
 RUN useradd appuser 
 RUN mkdir /nltk_data
-RUN chown -R appuser:root /usr/src/home
+RUN chown -R appuser:root /home/vcap/app
 RUN chown -R appuser:root /var/log/nginx
 RUN chown -R appuser:root /var/lib/nginx
 RUN chown -R appuser:root /run
 RUN chown -R appuser:root /nltk_data
 
 
-RUN chmod -R 777 /usr/src/home
+RUN chmod -R 777 /home/vcap/app
 RUN chmod -R 777 /var/log/nginx
 RUN chmod -R 777 /var/lib/nginx
 RUN chmod -R 777 /run
