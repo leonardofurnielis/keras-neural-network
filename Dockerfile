@@ -22,6 +22,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Creates a non-root user with an explicit UID and adds permission to access the /usr/src/home folder
 RUN useradd -u 5678 appuser && chown -R appuser /usr/src/home
+RUN chmod 755 -u appuser /usr/src/home
 USER appuser
 
-CMD ["/usr/bin/supervisord", "--loglevel=debug"]
+CMD ["/usr/bin/supervisord"]
