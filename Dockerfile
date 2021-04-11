@@ -32,9 +32,8 @@ RUN chmod -R 777 /var/lib/nginx
 RUN chown appuser:root /
 RUN chmod 755 /
 
-
-
-
 USER appuser
+
+EXPOSE 8080
 
 CMD ["/usr/bin/supervisord", "--loglevel=debug"]
