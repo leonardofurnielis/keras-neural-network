@@ -24,7 +24,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # RUN useradd appuser && chown -R appuser /usr/src/home
 # RUN chmod -R 755 /usr/src/home
 
-RUN whoiam
+RUN whoami
 RUN ls -la /usr
 
 USER root
