@@ -21,7 +21,7 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.c
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Creates a non-root user and adds permission to access the /usr folder
-RUN useradd appuser && chown -R appuser /usr/src/home
+RUN useradd appuser && chown -R appuser:appuser /usr/src/home
 RUN chmod -R 777 /usr/src/home
 
 RUN groups
