@@ -28,4 +28,4 @@ RUN ls -la
 
 USER appuser
 
-CMD ["/usr/bin/supervisord", "--loglevel=debug"]
+CMD ["/usr/bin/supervisord", "--loglevel=debug", "--user=appuser"]
