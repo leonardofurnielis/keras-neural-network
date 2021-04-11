@@ -24,7 +24,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN useradd appuser && chown -R appuser /usr/src/home
 RUN chmod -R 777 /usr/src/home
 
+RUN groups
 USER appuser
+RUN groups
 
 RUN ls -la
 
