@@ -26,13 +26,13 @@ RUN chown -R appuser:root /usr/src/home
 RUN chown -R appuser:root /var/log/nginx
 RUN chown -R appuser:root /var/lib/nginx
 RUN chown -R appuser:root /run
-# RUN chmod -R 777 /run
-# RUN chmod -R 777 /usr/src/home
-# RUN chmod -R 777 /var/log/nginx
-# RUN chmod -R 777 /var/lib/nginx
+RUN chmod -R 755 /run
+RUN chmod -R 755 /usr/src/home
+RUN chmod -R 755 /var/log/nginx
+RUN chmod -R 755 /var/lib/nginx
 
-RUN chown appuser:root /
-RUN chmod 755 /
+# RUN chown appuser:root /
+# RUN chmod 755 /
 
 USER appuser
 
