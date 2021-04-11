@@ -24,4 +24,4 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # RUN useradd appuser && chown -R appuser /usr/src/home
 # RUN chmod -R 755 /usr/src/home
 
-CMD ["sudo /usr/bin/supervisord", "--loglevel=debug"]
+CMD ["/usr/bin/supervisord", "--loglevel=debug"]
