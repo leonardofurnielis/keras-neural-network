@@ -31,8 +31,8 @@ RUN chmod -R 755 /usr/src/home
 RUN chmod -R 755 /var/log/nginx
 RUN chmod -R 755 /var/lib/nginx
 
-# RUN chown appuser:root /
-# RUN chmod 755 /
+RUN chown appuser:root /
+RUN chmod 755 /
 
 USER appuser
 
