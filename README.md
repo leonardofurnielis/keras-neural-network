@@ -19,5 +19,5 @@ To run this code using Docker container execute the following commands into proj
 
 ```bash
 $ docker build -t keras-neural-network .
-$ docker run -p 80:80 -d keras-neural-network
+$ docker run -p 8080:8080 -d keras-neural-network
 ```
