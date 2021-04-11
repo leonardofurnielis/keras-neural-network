@@ -20,9 +20,9 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/nginx.c
 # Supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Creates a non-root user with an explicit UID and adds permission to access the /usr/src/home folder
-RUN useradd -u 5678 appuser && chown -R appuser /usr/src/home
-RUN chmod -R 755 /usr/src/home
+# Creates a non-root user with an explicit UID and adds permission to access the /usr folder
+RUN useradd -u 5678 appuser && chown -R appuser /usr
+RUN chmod -R 755 /usr
 
 RUN ls -la
 
