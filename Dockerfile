@@ -30,6 +30,7 @@ RUN chown -R appuser:root /var/lib/nginx
 RUN chmod -R 777 /var/lib/nginx
 RUN chown -R appuser:root /run
 RUN chmod -R 777 /run
+RUN mkdir /nltk_data
 RUN chown -R appuser:root /nltk_data
 RUN chmod -R 777 /nltk_data
 
