@@ -38,6 +38,4 @@ RUN chmod -R 777 /nltk_data
 
 USER appuser
 
-EXPOSE 8080
-
 CMD ["/usr/bin/supervisord", "--loglevel=debug"]
