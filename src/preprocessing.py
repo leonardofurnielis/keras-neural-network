@@ -5,7 +5,7 @@ import pickle
 
 import nltk
 
-tfidf = pickle.load(open('src/vectorizer.pkl', 'rb'))
+vectorizer = pickle.load(open('src/model/vectorizer.pkl', 'rb'))
 
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -42,6 +42,6 @@ def pre_processing(text):
     tokens = stem_porter(tokens)
     text = rejoin_words(tokens)
 
-    text_tf = tfidf.transform([text])
+    text_tf = vectorizer.transform([text])
 
     return text_tf.toarray()

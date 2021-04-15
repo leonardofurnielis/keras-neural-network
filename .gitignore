@@ -1,2 +1,22 @@
-# Dataset 
+## Python ##
+
+# Source for the following rules: https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editors
+.DS_Store
+.vscode/
+.idea/
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Dataset files
 src/imdb-dataset.csv

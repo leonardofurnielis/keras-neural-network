@@ -1,7 +1,7 @@
 import json
 from flask_cors import CORS
-from flask import Flask, request, Response, jsonify
-from flask_restful import reqparse, Resource, Api
+from flask import Flask, request
+from flask_restful import Api
 import os
 import json
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
