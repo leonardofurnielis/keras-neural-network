@@ -72,12 +72,12 @@ X_train, X_test, Y_train, Y_test = train_test_split(X,
                                                     random_state=48,
                                                     stratify=Y)
 
-tfidf = TfidfVectorizer(ngram_range=(2, 3),
+vectorizer = TfidfVectorizer(ngram_range=(2, 3),
                         sublinear_tf=True,
                         max_features=10000)
 
-X_train_tf = tfidf.fit_transform(X_train)
-X_test_tf = tfidf.transform(X_test)
+X_train_tf = vectorizer.fit_transform(X_train)
+X_test_tf = vectorizer.transform(X_test)
 
 le = preprocessing.LabelEncoder()
 
@@ -121,5 +121,5 @@ network.fit(X_train_tf.toarray(),
             epochs=50,
             validation_split=0.3)
 
-network.save('./network_model.h5')
-pickle.dump(tfidf, open('./vectorizer.pkl', 'wb'))
+network.save('./model/neural_network.h5')
+pickle.dump(vectorizer, open('./model/vectorizer.pkl', 'wb'))
