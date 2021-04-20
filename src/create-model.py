@@ -1,3 +1,6 @@
+from keras import layers
+from keras import models
+from keras.utils import to_categorical
 import pandas as pd
 import numpy as np
 import pickle
@@ -18,7 +21,7 @@ nltk.download('punkt')
 stop_words = stopwords.words('english')
 porter_stemmer = PorterStemmer()
 
-df = pd.read_csv('./imdb-dataset.csv', delimiter=',')
+df = pd.read_csv('../data/raw/imdb-dataset.csv', delimiter=',')
 df = df.head(30000)
 
 
@@ -73,8 +76,8 @@ X_train, X_test, Y_train, Y_test = train_test_split(X,
                                                     stratify=Y)
 
 vectorizer = TfidfVectorizer(ngram_range=(2, 3),
-                        sublinear_tf=True,
-                        max_features=10000)
+                             sublinear_tf=True,
+                             max_features=10000)
 
 X_train_tf = vectorizer.fit_transform(X_train)
 X_test_tf = vectorizer.transform(X_test)
@@ -88,13 +91,10 @@ Y_test_le = le.transform(list(Y_test))
 num_class = Y.value_counts().shape
 input_shape = X_train_tf.shape
 
-from keras.utils import to_categorical
 
 Y_train_label_keras = to_categorical(Y_train_le)
 Y_test_label_keras = to_categorical(Y_test_le)
 
-from keras import models
-from keras import layers
 
 network = models.Sequential()
 
@@ -121,5 +121,5 @@ network.fit(X_train_tf.toarray(),
             epochs=50,
             validation_split=0.3)
 
-network.save('./model/neural_network.h5')
-pickle.dump(vectorizer, open('./model/vectorizer.pkl', 'wb'))
+network.save('../data/model/neural_network.h5')
+pickle.dump(vectorizer, open('../data/model/vectorizer.pkl', 'wb'))

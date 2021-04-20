@@ -19,4 +19,4 @@ instance/
 .ipynb_checkpoints
 
 # Dataset files
-src/imdb-dataset.csv
+data/raw/imdb-dataset.csv

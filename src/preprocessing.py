@@ -5,7 +5,7 @@ import pickle
 
 import nltk
 
-vectorizer = pickle.load(open('src/model/vectorizer.pkl', 'rb'))
+vectorizer = pickle.load(open('data/model/vectorizer.pkl', 'rb'))
 
 nltk.download('stopwords')
 nltk.download('punkt')
