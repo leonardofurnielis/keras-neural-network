@@ -18,7 +18,6 @@ instance/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Dataset files
+# Data files
 data/raw/imdb-dataset.csv
-
 nltk_data
