@@ -7,7 +7,7 @@ COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python -c "import nltk; nltk.download(['stopwords', 'punkt'], download_dir='./nltk_data')"
+RUN python -c "import nltk; nltk.download(['stopwords', 'punkt'], download_dir='/home/vcap/app/nltk_data')"
 
 COPY . . 
 
