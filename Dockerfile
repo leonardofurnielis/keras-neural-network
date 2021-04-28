@@ -1,11 +1,13 @@
 FROM python:3.8.9-slim-buster
 
-# Flask demo application
+# Flask application
 WORKDIR /home/vcap/app
 
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN python -c "import nltk; nltk.download(['stopwords', 'punkt'], download_dir='./nltk_data')"
 
 COPY . . 
 
@@ -22,19 +24,19 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Creates a non-root user and adds permission to access folders
 RUN useradd appuser 
-RUN mkdir /nltk_data
+#RUN mkdir /nltk_data
 RUN chown -R appuser:root /home/vcap/app
 RUN chown -R appuser:root /var/log/nginx
 RUN chown -R appuser:root /var/lib/nginx
 RUN chown -R appuser:root /run
-RUN chown -R appuser:root /nltk_data
+#RUN chown -R appuser:root /nltk_data
 
 
 RUN chmod -R 777 /home/vcap/app
 RUN chmod -R 777 /var/log/nginx
 RUN chmod -R 777 /var/lib/nginx
 RUN chmod -R 777 /run
-RUN chmod -R 777 /nltk_data
+#RUN chmod -R 777 /nltk_data
 
 USER appuser
 

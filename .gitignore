@@ -20,3 +20,5 @@ instance/
 
 # Dataset files
 data/raw/imdb-dataset.csv
+
+nltk_data
