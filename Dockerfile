@@ -1,4 +1,4 @@
-FROM python:3.8.9
+FROM registry.access.redhat.com/ubi8/python-38
 
 # Flask application
 WORKDIR /home/vcap/app
