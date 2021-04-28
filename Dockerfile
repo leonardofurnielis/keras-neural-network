@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . . 
 
 # System packages installation
-RUN apt-get update && apt-get install -y nginx supervisor
+RUN yum update && yum install -y nginx supervisor
 
 # Nginx configuration
 RUN rm /etc/nginx/sites-enabled/default
