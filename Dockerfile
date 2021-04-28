@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-38
+FROM python:3.8.9
 
 # Flask application
 WORKDIR /home/vcap/app
@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . . 
 
 # System packages installation
-RUN yum update && yum install -y nginx supervisor
+RUN apt-get update && apt-get install -y nginx supervisor
 
 # Nginx configuration
 RUN rm /etc/nginx/sites-enabled/default
