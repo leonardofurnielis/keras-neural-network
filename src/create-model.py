@@ -21,7 +21,7 @@ nltk.download('punkt')
 stop_words = stopwords.words('english')
 porter_stemmer = PorterStemmer()
 
-df = pd.read_csv('../data/raw/imdb-dataset.csv', delimiter=',')
+df = pd.read_csv('../datasets/imdb-dataset.csv', delimiter=',')
 df = df.head(30000)
 
 
@@ -121,5 +121,5 @@ network.fit(X_train_tf.toarray(),
             epochs=50,
             validation_split=0.3)
 
-network.save('../data/model/neural_network.h5')
-pickle.dump(vectorizer, open('../data/model/vectorizer.pkl', 'wb'))
+network.save('../models/neural_network.h5')
+pickle.dump(vectorizer, open('../models/vectorizer.pkl', 'wb'))

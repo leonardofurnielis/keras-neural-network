@@ -1,7 +1,7 @@
 from tensorflow import keras
 import numpy as np
 
-model = keras.models.load_model('data/model/neural_network.h5')
+model = keras.models.load_model('models/neural_network.h5')
 
 def model_predict(X):
     predicted = model.predict(X)
