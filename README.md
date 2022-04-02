@@ -1,5 +1,9 @@
 # python-neural-network
 
+- [Kaggle Dataset](https://leonardofurnielis.medium.com/criando-modelos-de-machine-learning-com-ibm-watson-studio-1-de-2-35d012f8eec)
+- [Implementing with Red Hat OpenShift](https://leonardofurnielis.medium.com/implemente-uma-api-de-rede-neural-com-python-no-red-hat-openshift-6c3eb9ecaedf) (portuguese-Brazil)
+
+
 ## Table of Contents
 
 - [Local](#local)
