@@ -1,3 +1,8 @@
+"""
+Copyright 2021-2022 Leonardo Furnielis.
+Licensed under MIT License
+"""
+
 from keras import layers
 from keras import models
 from keras.utils import to_categorical
@@ -24,8 +29,14 @@ porter_stemmer = PorterStemmer()
 df = pd.read_csv('../datasets/imdb-dataset.csv', delimiter=',')
 df = df.head(30000)
 
-
 def identify_tokens(row):
+    """Identify tokens in a row
+    Args:
+        row (list): row of dataframe
+    
+    Returns:
+        list: text splited in tokens
+    """
     source = row[0]
     tokens = word_tokenize(source)
     token_words = [w for w in tokens if w.isalpha()]
@@ -33,24 +44,52 @@ def identify_tokens(row):
 
 
 def remove_stops(row):
+    """Remove stop words from text
+    Args:
+        row (list): row of dataframe
+    
+    Returns:
+        list: list of tokens without stop words
+    """
     source_tokenization = row[2]
     stop = [w for w in source_tokenization if not w in stop_words]
     return (stop)
 
 
 def stem_porter(row):
+    """Execute steamming porter
+    Args:
+        row (list): row of dataframe
+    
+    Returns:
+        list: list of tokens with steamming.
+    """    
     my_list = row[2]
     stemmed_list = [porter_stemmer.stem(word) for word in my_list]
     return (stemmed_list)
 
 
 def rejoin_words(row):
+    """Join tokens in a single string
+    Args:
+        row (list): row of dataframe
+    
+    Returns:
+        str: text of joined tokens
+    """    
     my_list = row[2]
     joined_words = (" ".join(my_list))
     return joined_words
 
 
 def pre_processing(df):
+    """Execute text feature engineering (TFE)
+    Args:
+        df (dataframe): row of dataframe
+    
+    Returns:
+        df: New df post text feature engineering (TFE)
+    """    
     print('Tokenization')
     df['text1'] = df.apply(identify_tokens, axis=1)
     print('Remove stop words')
@@ -71,7 +110,7 @@ Y = df['sentiment']
 
 X_train, X_test, Y_train, Y_test = train_test_split(X,
                                                     Y,
-                                                    test_size=0.1,
+                                                    test_size=0.2,
                                                     random_state=48,
                                                     stratify=Y)
 
@@ -91,11 +130,10 @@ Y_test_le = le.transform(list(Y_test))
 num_class = Y.value_counts().shape
 input_shape = X_train_tf.shape
 
-
 Y_train_label_keras = to_categorical(Y_train_le)
 Y_test_label_keras = to_categorical(Y_test_le)
 
-
+# Creating neural network model
 network = models.Sequential()
 
 network.add(layers.Dense(2, activation='relu', input_shape=(input_shape[1], )))
@@ -121,5 +159,6 @@ network.fit(X_train_tf.toarray(),
             epochs=50,
             validation_split=0.3)
 
+# Export model to file
 network.save('../models/neural_network.h5')
 pickle.dump(vectorizer, open('../models/vectorizer.pkl', 'wb'))
