@@ -97,15 +97,15 @@ def pre_processing(df):
     print('Stemming')
     df['text1'] = df.apply(stem_porter, axis=1)
     print('Rejoin words')
-    df['tidy_text'] = df.apply(rejoin_words, axis=1)
+    df['clean_text'] = df.apply(rejoin_words, axis=1)
 
     return df
 
 
 df = pre_processing(df)
-df['tidy_text'] = df['tidy_text'].str.lower()
+df['clean_text'] = df['clean_text'].str.lower()
 
-X = df['tidy_text']
+X = df['clean_text']
 Y = df['sentiment']
 
 X_train, X_test, Y_train, Y_test = train_test_split(X,
