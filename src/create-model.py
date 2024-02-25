@@ -1,8 +1,3 @@
-"""
-Copyright 2021-2022 Leonardo Furnielis.
-Licensed under MIT License
-"""
-
 from keras import layers
 from keras import models
 from keras.utils import to_categorical
@@ -160,5 +155,5 @@ network.fit(X_train_tf.toarray(),
             validation_split=0.3)
 
 # Export model to file
-network.save('../models/neural_network.h5')
-pickle.dump(vectorizer, open('../models/vectorizer.pkl', 'wb'))
+network.save('../models/sentiment_nn_model.keras')
+pickle.dump(vectorizer, open('../models/text_vectorizer.pickle', 'wb'))
