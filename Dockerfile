@@ -12,4 +12,5 @@ RUN apt-get update \
 
 COPY . . 
 
-CMD ["gunicorn", "-b", "0.0.0.0:3000", "-c", "/home/vcap/app/main.py", "main:app"]
+CMD ["python3", "main.py"]
+# CMD ["gunicorn", "-b", "0.0.0.0:3000", "-c", "/home/vcap/app/main.py", "main:app", "--log-level", "error"]
