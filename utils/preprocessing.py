@@ -1,8 +1,8 @@
 import os
 import ssl
 
-from nltk import download
-from nltk.data import path as nltkpath
+from nltk import download as nltk_download
+from nltk.data import path as nltk_path
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -17,9 +17,9 @@ else:
 
 
 # If the 'nltk_data' directory does not exist, download NLTK data to this directory.
+nltk_path.append('./nltk_data')
 if not os.path.isdir('./nltk_data'):
-    download(['stopwords', 'punkt'], download_dir='./nltk_data')
-    nltkpath.append('./nltk_data')
+    nltk_download(['stopwords', 'punkt'], download_dir='./nltk_data')
 
 
 stop_words = stopwords.words('english')
@@ -57,7 +57,7 @@ def stem_porter(tokens):
     """Execute Porter stemming on a list of tokens
 
     Args:
-        row (list): A row of dataframe containing tokens
+        row (list): A list of tokens to apply stemming
 
     Returns:
         list: A list of tokens after stemming

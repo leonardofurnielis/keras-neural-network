@@ -10,7 +10,7 @@ from utils.preprocessing import tokenization, remove_stop_words, stem_porter, re
 
 app = Flask(__name__)
 CORS(app)
-vectorizer = pickle.load(open('models/text_vectorizer.pickle', 'rb'))
+tfidf_vectorizer = pickle.load(open('models/tfidf_text_vectorizer.pickle', 'rb'))
 
 @app.route("/")
 def index():
@@ -33,7 +33,7 @@ def __predict__():
     input_tokens = stem_porter(input_tokens)
     input_text_cleaned = rejoin_words(input_tokens)
 
-    input_vector = word2vec_tfidf(vectorizer, input_text_cleaned)
+    input_vector = word2vec_tfidf(tfidf_vectorizer, input_text_cleaned)
 
     output = predict(input_vector)
 
