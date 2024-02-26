@@ -4,14 +4,16 @@ import numpy as np
 model = keras.models.load_model('models/sentiment_nn_model.keras')
 
 
-def model_predict(X):
+def predict(X):
     """Execute the model to predict sentiment of text
+
     Args:
-        X (lilst): The text to predict (post text feature engineering)
+        X (list): The text to predict (post text feature engineering)
 
     Returns:
-        dict: The result of predictin and it's confidence
+        dict: A dictionary containing the predicted sentiment and its confidence
     """
+
     predicted = model.predict(X)
     predicted = predicted[0]
     if predicted[0] > predicted[1]:
@@ -24,4 +26,5 @@ def model_predict(X):
             'sentiment': 'positive',
             'confidence': np.float64(predicted[1])
         }
+        
     return result

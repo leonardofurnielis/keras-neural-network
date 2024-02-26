@@ -1,15 +1,16 @@
-from flask_cors import CORS
-from flask import Flask, request
 import os
 import json
+import pickle
+from flask_cors import CORS
+from flask import Flask, request
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-from src.prediction import model_predict
-from src.preprocessing import pre_processing
+from utils.prediction import predict
+from utils.preprocessing import tokenization, remove_stop_words, stem_porter, rejoin_words, word2vec_tfidf
 
 app = Flask(__name__)
 CORS(app)
-
+vectorizer = pickle.load(open('models/text_vectorizer.pickle', 'rb'))
 
 @app.route("/")
 def index():
@@ -17,7 +18,7 @@ def index():
 
 
 @app.route('/api/v1/predict', methods=['POST'])
-def predict():
+def __predict__():
     """
     Args:
         text (str): The text to be predicted
@@ -25,8 +26,16 @@ def predict():
     Returns:
         dict: The result of predictin and it's confidence
     """
-    input_text = pre_processing(request.json.get('text'))
-    output = model_predict(input_text)
+    input_text = request.json.get('text')
+
+    input_tokens = tokenization(input_text)
+    input_tokens = remove_stop_words(input_tokens)
+    input_tokens = stem_porter(input_tokens)
+    input_text_cleaned = rejoin_words(input_tokens)
+
+    input_vector = word2vec_tfidf(vectorizer, input_text_cleaned)
+
+    output = predict(input_vector)
 
     response = app.response_class(response=json.dumps(output),
                                   status=200,
@@ -35,4 +44,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',
+            port=3000)

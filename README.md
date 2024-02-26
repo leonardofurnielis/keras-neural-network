@@ -1,4 +1,4 @@
-# containerized-keras-nn
+# python-keras-nn
 
 - [Kaggle Dataset](https://leonardofurnielis.medium.com/criando-modelos-de-machine-learning-com-ibm-watson-studio-1-de-2-35d012f8eec)
 
@@ -34,6 +34,6 @@ deactivate
 To run this code using Docker container execute the following commands into project root directory
 
 ```bash
-$ docker build -t containerized-keras-nn .
-$ docker run -p 8080:8080 -d containerized-keras-nn
+$ docker build -t python-keras-nn .
+$ docker run -p 8080:8080 -d python-keras-nn
 ```

@@ -19,5 +19,4 @@ instance/
 .ipynb_checkpoints
 
 # Data files
-datasets/imdb-dataset.csv
 nltk_data
