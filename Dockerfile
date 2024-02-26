@@ -12,5 +12,6 @@ RUN apt-get update \
 
 COPY . . 
 
-CMD ["python3", "main.py"]
-# CMD ["gunicorn", "-b", "0.0.0.0:3000", "-c", "/home/vcap/app/main.py", "main:app", "--log-level", "error"]
+CMD ["waitress-serve", "--listen=0.0.0.0:3000", "main:app"]
+# CMD ["python3", "main.py"]
+# CMD ["gunicorn", "-b", "0.0.0.0:3000", "-c", "/home/vcap/app/main.py", "main:app"]
