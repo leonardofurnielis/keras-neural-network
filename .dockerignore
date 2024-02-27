@@ -8,5 +8,6 @@ instance/
 .webassets-cache
 .ipynb_checkpoints
 
+data/
+notebooks/
 nltk_data/
-models/tfidf_text_vectorizer.pickle
