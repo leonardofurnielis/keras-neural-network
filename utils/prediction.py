@@ -1,7 +1,7 @@
 from tensorflow import keras
 import numpy as np
 
-model = keras.models.load_model('models/sentiment_nn_model.keras')
+model = keras.models.load_model('models/sentiment_network_model.keras')
 
 
 def predict(X):
