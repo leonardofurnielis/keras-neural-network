@@ -7,6 +7,3 @@ __pycache__/
 instance/
 .webassets-cache
 .ipynb_checkpoints
-
-nltk_data/
-models/tfidf_text_vectorizer.pickle

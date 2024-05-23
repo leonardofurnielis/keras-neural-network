@@ -1,6 +1,4 @@
-# tensorflow-keras-container
-
-- [Kaggle Dataset](https://leonardofurnielis.medium.com/criando-modelos-de-machine-learning-com-ibm-watson-studio-1-de-2-35d012f8eec)
+# sample-model-container
 
 ## Table of Contents
 
@@ -19,6 +17,8 @@ python -m venv <your-venv-name>
 source <your-venv-name>/bin/activate
 
 $ pip install --no-cache-dir -r requirements.txt
+
+$ python main.py
 ```
 
 #### Dectivate your Python virtual environment
@@ -34,6 +34,6 @@ deactivate
 To run this code using Docker container execute the following commands into project root directory
 
 ```bash
-$ docker build -t tensorflow-keras-container .
-$ docker run -p 3000:3000 -d tensorflow-keras-container
+$ docker build -t sample-model-container .
+$ docker run -p 3000:3000 -d sample-model-container
 ```

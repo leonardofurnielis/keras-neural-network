@@ -1,30 +1,30 @@
-from tensorflow import keras
-import numpy as np
+import pickle
 
-model = keras.models.load_model('models/sentiment_network_model.keras')
+model = pickle.load(open('models/credit_risk_model.pickle', 'rb'))
 
 
-def predict(X):
-    """Execute the model to predict sentiment of text
-
+def predict(input_data):
+    """
     Args:
-        X (list): The text to predict (post text feature engineering)
+        input_data (list): input values to predict
 
     Returns:
-        dict: A dictionary containing the predicted sentiment and its confidence
+        dict: A dictionary containing the predicted response of machine learning model
     """
 
-    predicted = model.predict(X)
-    predicted = predicted[0]
-    if predicted[0] > predicted[1]:
-        result = {
-            'sentiment': 'negative',
-            'confidence': np.float64(predicted[0])
-        }
-    else:
-        result = {
-            'sentiment': 'positive',
-            'confidence': np.float64(predicted[1])
-        }
+    predict = model.predict(input_data)
+    proba = model.predict_proba(input_data)
+
+    output_data = []
+
+    for i, value in enumerate(input_data):
+        if predict[i] == 'No Risk':
+            output_data.append(["No Risk", proba[i].tolist()])
+        if predict[i] == 'Risk':
+            output_data.append(["Risk", proba[i].tolist()])
+
         
-    return result
+    return  {
+                "fields": [ "prediction", "probability" ],
+                "values": output_data
+            }

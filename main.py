@@ -1,16 +1,14 @@
 import os
 import json
-import pickle
+
 from flask_cors import CORS
 from flask import Flask, request
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 from utils.prediction import predict
-from utils.preprocessing import tokenization, remove_stop_words, stem_porter, rejoin_words, word2vec_tfidf
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 app = Flask(__name__)
 CORS(app)
-tfidf_vectorizer = pickle.load(open('models/tfidf_text_vectorizer.pickle', 'rb'))
 
 @app.route("/")
 def index():
@@ -19,27 +17,22 @@ def index():
 
 @app.route('/api/v1/predict', methods=['POST'])
 def __predict__():
-    """
-    Args:
-        text (str): The text to be predicted
+    input_data = request.json.get('values')
 
-    Returns:
-        dict: The result of predictin and it's confidence
-    """
-    input_text = request.json.get('text')
+    if input_data is None: 
+        input_data = request.json.get('input_data')[0]
+        input_data = input_data['values']
 
-    input_tokens = tokenization(input_text)
-    input_tokens = remove_stop_words(input_tokens)
-    input_tokens = stem_porter(input_tokens)
-    input_text_cleaned = rejoin_words(input_tokens)
-
-    input_vector = word2vec_tfidf(tfidf_vectorizer, input_text_cleaned)
-
-    output = predict(input_vector)
-
-    response = app.response_class(response=json.dumps(output),
+    if input_data is None: 
+        response = app.response_class(response=json.dumps({"error": "Invalid request syntax"}),
+                                  status=400,
+                                  mimetype='application/json')
+    else:
+        output = predict(input_data)
+        response = app.response_class(response=json.dumps(output),
                                   status=200,
                                   mimetype='application/json')
+        
     return response
 
 
