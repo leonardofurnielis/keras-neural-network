@@ -17,10 +17,11 @@ def index():
 
 @app.route('/api/v1/predict', methods=['POST'])
 def __predict__():
-    input_data = request.json.get('values')
+    request_data = request.get_json(force=True)
+    input_data = request_data['values']
 
     if input_data is None: 
-        input_data = request.json.get('input_data')[0]
+        input_data = request_data['input_data'][0]
         input_data = input_data['values']
 
     if input_data is None: 
