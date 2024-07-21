@@ -18,19 +18,19 @@ def index():
 @app.route('/api/v1/predict', methods=['POST'])
 def __predict__():
     request_data = request.get_json(force=True)
-    input_data = request_data['values']
+    input_data = request_data.get('values')
 
     if input_data is None: 
         input_data = request_data['input_data'][0]
-        input_data = input_data['values']
+        input_data = input_data.get('values')
 
     if input_data is None: 
-        response = app.response_class(response=json.dumps({"error": "Invalid request syntax"}),
+        response = app.response_class(response=json.dumps({"error": "Invalid request syntax, `input_data` is required`"}),
                                   status=400,
                                   mimetype='application/json')
     else:
-        output = predict(input_data)
-        response = app.response_class(response=json.dumps(output),
+        predicted_values = predict(input_data)
+        response = app.response_class(response=json.dumps(predicted_values),
                                   status=200,
                                   mimetype='application/json')
         
