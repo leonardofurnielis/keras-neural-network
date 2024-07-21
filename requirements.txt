@@ -4,3 +4,6 @@ flask-cors==4.0.0
 scikit-learn==1.0.2
 pandas==1.5.3
 numpy==1.26.4
+ibm-watson-openscale==3.0.38
+uuid==1.30
+certifi==2024.7.4
