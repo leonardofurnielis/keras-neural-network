@@ -1,4 +1,4 @@
-FROM registry.hub.docker.com/library/python:3.11.9-slim
+FROM registry.hub.docker.com/library/python:3.10.14-slim
 
 # Create a directory for the application
 WORKDIR /home/vcap/app
