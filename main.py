@@ -26,7 +26,7 @@ def index():
 
 @app.route('/api/v1/predict', methods=['POST'])
 def __predict__():
-    is_wos_request = request.headers.get('X-watsonx-Request')
+    is_wos_request = request.headers.get('X-Wos-Request')
 
     if is_wos_request is not None:
         if is_wos_request.lower() == 'true':
