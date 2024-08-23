@@ -29,10 +29,12 @@ def __predict__():
     is_wos_request = request.headers.get('X-Wos-Request')
 
     if is_wos_request is not None:
-        if is_wos_request.lower() == 'true':
+        if is_wos_request.lower() == 'true' or is_wos_request == True:
             is_wos_request = True
         else:
             is_wos_request = False
+    else:
+        is_wos_request = False
 
     request_data = request.get_json(force=True)
     input_data = request_data.get('values')
@@ -58,7 +60,7 @@ def __predict__():
 
         response_time = int((time.time() - start_time) * 1000)
 
-        if is_wos_request:  # perform payload logging if not watson openscale score request
+        if not is_wos_request:  # perform payload logging if not watson openscale score request
             payload_logging(wos_payload_logging_data, predicted_values, response_time)
 
     return response
