@@ -79,7 +79,7 @@ def payload_logging(payload_scoring, scoring_response, response_time=460):
         wos_client.data_sets.store_records(data_set_id="<DATA_SET_ID>", request_body=records_list)
 
     except Exception as e:
-        print("Error performing payload logging: ")
+        print("Error performing payload logging")
 
 
 if __name__ == '__main__':
